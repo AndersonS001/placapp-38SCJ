@@ -25,10 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MANDANTE"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/gameScoreSetHomeTeamScore"
-        app:layout_constraintBottom_toBottomOf="@id/gameScoreSetHomeTeamScore"
-        app:layout_constraintTop_toTopOf="@id/gameScoreSetHomeTeamScore"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/gameScoreSetHomeTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/gameScoreSetHomeTeamScore"
+        app:layout_constraintEnd_toEndOf="@id/gameScoreSetHomeTeamScore"
+        app:layout_constraintStart_toEndOf="@id/gameScoreGuideline"
         />
 
     <TextView
@@ -37,7 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="0"
-        android:textSize="30sp"
+        android:textSize="50sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/gameScoreGuideline"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -50,7 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/gameScoreGuideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/gameScoreHomeTeamName" />
 
     <!-- Away team -->
     <TextView
@@ -58,11 +61,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="VISITANTE"
-        android:layout_marginStart="20dp"
-        app:layout_constraintStart_toEndOf="@id/gameScoreSetAwayTeamScore"
-        app:layout_constraintBottom_toBottomOf="@id/gameScoreSetAwayTeamScore"
-        app:layout_constraintTop_toTopOf="@id/gameScoreSetAwayTeamScore"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/gameScoreSetAwayTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/gameScoreSetAwayTeamScore"
+        app:layout_constraintEnd_toEndOf="@id/gameScoreSetAwayTeamScore"
+        app:layout_constraintStart_toEndOf="@id/gameScoreGuidelineAway"
         />
 
     <TextView
@@ -71,8 +75,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="0"
-        android:textSize="30sp"
+        android:textSize="50sp"
         app:layout_constraintStart_toEndOf="@id/gameScoreGuidelineAway"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
@@ -82,7 +87,7 @@
         android:text="00"
         android:textSize="150sp"
         app:layout_constraintStart_toEndOf="@id/gameScoreGuidelineAway"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gameScoreAwayTeamName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
