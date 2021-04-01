@@ -12,7 +12,11 @@ class GameScoreActivity: AppCompatActivity() {
     }
     
     var homeTeamScore = 0
-    var awayTeamScore = 0
+    private var awayTeamScore = 0
+
+    var setHomeTeamScore = 0
+    var setAwayTeamScore = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,23 +25,13 @@ class GameScoreActivity: AppCompatActivity() {
         gameScoreHomeTeamName.text = intent.getStringExtra(TEAM_HOME_NAME)
         gameScoreAwayTeamName.text = intent.getStringExtra(TEAM_AWAY_NAME)
 
-        gameScoreHomeIncrease.setOnClickListener { 
+        gameScoreHomeTeamScore.setOnClickListener {
             homeTeamScore++
             updateScore()
         }
-        
-        gameScoreHomeDecrease.setOnClickListener { 
-            if (homeTeamScore > 0) homeTeamScore--
-            updateScore()
-        }
-        
-        gameScoreAwayIncrease.setOnClickListener {  
+
+        gameScoreAwayTeamScore.setOnClickListener {
             awayTeamScore++
-            updateScore()
-        }
-        
-        gameScoreAwayDecrease.setOnClickListener { 
-            if (awayTeamScore > 0) awayTeamScore--
             updateScore()
         }
 
@@ -49,6 +43,46 @@ class GameScoreActivity: AppCompatActivity() {
     private fun updateScore() {
         gameScoreHomeTeamScore.text = String.format("%02d", homeTeamScore)
         gameScoreAwayTeamScore.text = String.format("%02d", awayTeamScore)
+
+        updateSet()
     }
 
+    private fun resetScore(){
+        homeTeamScore = 0
+        awayTeamScore = 0
+
+        updateScore()
+    }
+
+    private fun difference(x: Int, y: Int): Int{
+        return  x - y;
+    }
+
+    private fun updateSet(){
+        var setPoint = 25
+
+        if(setHomeTeamScore == 2 && setAwayTeamScore == 2)
+            setPoint = 15
+
+        if(homeTeamScore >= setPoint){
+
+            if(difference(homeTeamScore,awayTeamScore) >= 2){
+                setHomeTeamScore++
+                gameScoreSetHomeTeamScore.text = setHomeTeamScore.toString()
+
+                resetScore()
+            }
+        }
+
+        if(awayTeamScore >= setPoint){
+            var dif = awayTeamScore - homeTeamScore
+
+            if(difference(awayTeamScore, homeTeamScore) >= 2){
+                setAwayTeamScore++
+                gameScoreSetAwayTeamScore.text = setAwayTeamScore.toString()
+
+                resetScore()
+            }
+        }
+    }
 }
