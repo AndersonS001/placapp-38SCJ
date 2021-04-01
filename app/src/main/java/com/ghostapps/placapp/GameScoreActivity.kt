@@ -1,6 +1,7 @@
 package com.ghostapps.placapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_score_game.*
 
@@ -61,6 +62,7 @@ class GameScoreActivity: AppCompatActivity() {
     private fun updateSet(){
         var setPoint = 25
         var isGameOver = false
+        var winner = gameScoreHomeTeamName
 
         if(setHomeTeamScore == 2 && setAwayTeamScore == 2) {
             setPoint = 15
@@ -81,20 +83,28 @@ class GameScoreActivity: AppCompatActivity() {
         }
 
         if(awayTeamScore >= setPoint){
-            var dif = awayTeamScore - homeTeamScore
 
             if(difference(awayTeamScore, homeTeamScore) >= 2){
                 setAwayTeamScore++
                 gameScoreSetAwayTeamScore.text = setAwayTeamScore.toString()
 
-                if(setAwayTeamScore == 3)
+                if(setAwayTeamScore == 3) {
                     isGameOver = true
+                    winner = gameScoreAwayTeamName
+                }
 
                 resetScore()
             }
         }
 
-        if(isGameOver)
+        if(isGameOver) {
+            val text = "Fim de Jogo! O vencedor é: " + winner.text
+            val duration = Toast.LENGTH_LONG
+
+            val toast = Toast.makeText(applicationContext, text, duration)
+            toast.show()
+
             finish()
+        }
     }
 }
