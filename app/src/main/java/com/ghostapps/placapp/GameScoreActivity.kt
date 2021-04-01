@@ -60,15 +60,21 @@ class GameScoreActivity: AppCompatActivity() {
 
     private fun updateSet(){
         var setPoint = 25
+        var isGameOver = false
 
-        if(setHomeTeamScore == 2 && setAwayTeamScore == 2)
+        if(setHomeTeamScore == 2 && setAwayTeamScore == 2) {
             setPoint = 15
+            isGameOver = true
+        }
 
         if(homeTeamScore >= setPoint){
 
             if(difference(homeTeamScore,awayTeamScore) >= 2){
                 setHomeTeamScore++
                 gameScoreSetHomeTeamScore.text = setHomeTeamScore.toString()
+
+                if(setHomeTeamScore == 3)
+                    isGameOver = true
 
                 resetScore()
             }
@@ -81,8 +87,14 @@ class GameScoreActivity: AppCompatActivity() {
                 setAwayTeamScore++
                 gameScoreSetAwayTeamScore.text = setAwayTeamScore.toString()
 
+                if(setAwayTeamScore == 3)
+                    isGameOver = true
+
                 resetScore()
             }
         }
+
+        if(isGameOver)
+            finish()
     }
 }
