@@ -5,17 +5,42 @@
     android:background="@color/colorPrimaryDark"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gameScoreGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gameScoreGuidelineAway"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+
     <!-- Home team -->
     <TextView
         android:id="@+id/gameScoreHomeTeamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/gameScoreHomeTeamScore"
-        app:layout_constraintEnd_toEndOf="@id/gameScoreHomeTeamScore"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/gameScoreHomeIncrease"
+        android:text="MANDANTE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gameScoreSetHomeTeamScore"
+        app:layout_constraintBottom_toBottomOf="@id/gameScoreSetHomeTeamScore"
+        app:layout_constraintTop_toTopOf="@id/gameScoreSetHomeTeamScore"
         />
-    
+
+    <TextView
+        android:id="@+id/gameScoreSetHomeTeamScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="00"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@id/gameScoreGuideline"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <ImageView
         android:id="@+id/gameScoreHomeIncrease"
         android:layout_width="60dp"
@@ -33,11 +58,10 @@
         android:layout_height="wrap_content"
         android:text="00"
         android:textSize="100sp"
-        app:layout_constraintEnd_toStartOf="@id/gameScoreAwayTeamScore"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gameScoreAwayTeamScore"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/gameScoreHomeDecrease"
@@ -49,18 +73,30 @@
         app:layout_constraintEnd_toEndOf="@id/gameScoreHomeTeamScore"
         app:layout_constraintTop_toBottomOf="@id/gameScoreHomeTeamScore"
         />
-    
+
     <!-- Away team -->
     <TextView
         android:id="@+id/gameScoreAwayTeamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/gameScoreAwayTeamScore"
-        app:layout_constraintEnd_toEndOf="@id/gameScoreAwayTeamScore"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/gameScoreAwayIncrease"
+        android:text="VISITANTE"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@id/gameScoreSetAwayTeamScore"
+        app:layout_constraintBottom_toBottomOf="@id/gameScoreSetAwayTeamScore"
+        app:layout_constraintTop_toTopOf="@id/gameScoreSetAwayTeamScore"
+        app:layout_constraintEnd_toEndOf="parent"
         />
-    
+
+    <TextView
+        android:id="@+id/gameScoreSetAwayTeamScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="00"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@id/gameScoreGuidelineAway"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <ImageView
         android:id="@+id/gameScoreAwayIncrease"
         android:layout_width="60dp"
@@ -71,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="@id/gameScoreAwayTeamScore"
         app:layout_constraintBottom_toTopOf="@id/gameScoreAwayTeamScore"
         />
-    
+
     <TextView
         android:id="@+id/gameScoreAwayTeamScore"
         android:layout_width="wrap_content"
@@ -108,10 +144,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:cornerRadius="100dp"
         />
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

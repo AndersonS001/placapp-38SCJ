@@ -14,7 +14,7 @@ class HomeActivity : AppCompatActivity() {
         setupView()
     }
 
-    fun setupView() {
+    private fun setupView() {
         homeNewGameButton.setOnClickListener {
             val intent = Intent(this, PreGameActivity::class.java)
             startActivity(intent)
