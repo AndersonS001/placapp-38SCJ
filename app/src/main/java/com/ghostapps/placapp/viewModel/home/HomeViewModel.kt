@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.ghostapps.placapp.ui.preGame.PreGameActivity
 
 class HomeViewModel(
-    val contract: HomeContract
+    private val contract: HomeContract
 ) : ViewModel() {
     fun onNewGamePressed() {
         contract.navigateTo(PreGameActivity::class.java)

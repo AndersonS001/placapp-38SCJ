@@ -20,7 +20,6 @@ class GameScoreActivity : AppCompatActivity(), GameScoreContract {
     private lateinit var binding: ActivityScoreGameBinding
     private val viewModel: GameScoreViewModel by viewModel { parametersOf(this) }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_score_game)

@@ -1,19 +1,19 @@
 package com.ghostapps.placapp.viewModel
 
 import androidx.databinding.Observable
+import androidx.databinding.Observable.OnPropertyChangedCallback
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.ViewModel
 
-open class BaseViewModel: ViewModel(), Observable {
-
+abstract class BaseViewModel: ViewModel(), Observable {
     @Transient
     private var mCallbacks: PropertyChangeRegistry? = null
 
-    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback) {
+    override fun addOnPropertyChangedCallback(callback: OnPropertyChangedCallback) {
         mCallbacks!!.add(callback)
     }
 
-    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback) {
+    override fun removeOnPropertyChangedCallback(callback: OnPropertyChangedCallback) {
         mCallbacks!!.remove(callback)
     }
 

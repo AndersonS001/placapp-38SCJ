@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.ghostapps.placapp.viewModel.gameScore.GameScoreViewModel" />
@@ -36,36 +35,37 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@={viewModel.homeTeamName}"
-            tools:text="MANDANTE"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="@id/gameScoreSetHomeTeamScore"
             app:layout_constraintStart_toEndOf="@id/gameScoreGuideline"
             app:layout_constraintStart_toStartOf="@id/gameScoreSetHomeTeamScore"
-            app:layout_constraintTop_toBottomOf="@id/gameScoreSetHomeTeamScore" />
+            app:layout_constraintTop_toBottomOf="@id/gameScoreSetHomeTeamScore"
+            tools:text="MANDANTE" />
 
         <TextView
             android:id="@+id/gameScoreSetHomeTeamScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="0"
+            android:text="@={viewModel.formattedSetHomeTeamScore}"
             android:textSize="50sp"
             app:layout_constraintEnd_toStartOf="@id/gameScoreGuideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0"/>
 
         <TextView
             android:id="@+id/gameScoreHomeTeamScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="00"
             android:onClick="@{_ -> viewModel.onHomeTeamIncrease()}"
             android:text="@={viewModel.formattedHomeTeamScore}"
             android:textSize="150sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/gameScoreGuideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gameScoreHomeTeamName" />
+            app:layout_constraintTop_toTopOf="@id/gameScoreHomeTeamName"
+            tools:text="00" />
 
         <!-- Away team -->
         <TextView
@@ -73,31 +73,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            tools:text="VISITANTE"
             android:text="@={viewModel.awayTeamName}"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="@id/gameScoreSetAwayTeamScore"
             app:layout_constraintStart_toEndOf="@id/gameScoreGuidelineAway"
             app:layout_constraintStart_toStartOf="@id/gameScoreSetAwayTeamScore"
-            app:layout_constraintTop_toBottomOf="@id/gameScoreSetAwayTeamScore" />
+            app:layout_constraintTop_toBottomOf="@id/gameScoreSetAwayTeamScore"
+            tools:text="VISITANTE" />
 
         <TextView
             android:id="@+id/gameScoreSetAwayTeamScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="0"
+            android:text="@{viewModel.formattedSetAwayTeamScore}"
             android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/gameScoreGuidelineAway"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0"/>
 
 
         <TextView
             android:id="@+id/gameScoreAwayTeamScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="00"
             android:onClick="@{_ -> viewModel.onAwayTeamIncrease()}"
             android:text="@={viewModel.formattedAwayTeamScore}"
             android:textSize="150sp"
@@ -105,15 +105,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintStart_toEndOf="@id/gameScoreGuidelineAway"
-            app:layout_constraintTop_toTopOf="@id/gameScoreAwayTeamName" />
+            app:layout_constraintTop_toTopOf="@id/gameScoreAwayTeamName"
+            tools:text="00" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/gameScoreExitButton"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="@string/scoreGameExit"
             android:onClick="@{_ -> viewModel.onExitPressed()}"
+            android:text="@string/scoreGameExit"
             android:textColor="@android:color/white"
             app:cornerRadius="100dp"
             app:layout_constraintBottom_toBottomOf="parent"

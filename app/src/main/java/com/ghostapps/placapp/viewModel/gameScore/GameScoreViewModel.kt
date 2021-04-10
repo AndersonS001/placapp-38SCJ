@@ -18,6 +18,9 @@ class GameScoreViewModel(
     var formattedHomeTeamScore = "00"
     var formattedAwayTeamScore = "00"
 
+    var formattedSetHomeTeamScore = "00"
+    var formattedSetAwayTeamScore = "00"
+
     fun onCreate(homeTeamName: String, awayTeamName: String) {
         this.homeTeamName = homeTeamName
         this.awayTeamName = awayTeamName
@@ -42,6 +45,13 @@ class GameScoreViewModel(
     }
 
     private fun updateScore() {
+        formattedHomeTeamScore = String.format("%02d", homeTeamScore)
+        formattedAwayTeamScore = String.format("%02d", awayTeamScore)
+
+        updateSet()
+    }
+
+    private fun updateSet() {
         var setPoint = 25
         var isGameOver = false
         var winner = homeTeamName
@@ -55,7 +65,7 @@ class GameScoreViewModel(
 
             if (difference(homeTeamScore, awayTeamScore) >= 2) {
                 setHomeTeamScore++
-                formattedHomeTeamScore = String.format("%02d", homeTeamScore)
+                formattedSetHomeTeamScore = setHomeTeamScore.toString()
 
                 if (setHomeTeamScore == 3)
                     isGameOver = true
@@ -68,7 +78,7 @@ class GameScoreViewModel(
 
             if (difference(awayTeamScore, homeTeamScore) >= 2) {
                 setAwayTeamScore++
-                formattedAwayTeamScore = String.format("%02d", awayTeamScore)
+                formattedSetAwayTeamScore = setAwayTeamScore.toString()
 
                 if (setAwayTeamScore == 3) {
                     isGameOver = true

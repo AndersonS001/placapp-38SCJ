@@ -10,9 +10,7 @@
             type="com.ghostapps.placapp.viewModel.preGame.PreGameViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark">
@@ -49,7 +47,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:inputType="textCapWords"
-            android:text="@={viewModel.awayTeamName}"
+            android:text="@={viewModel.homeTeamName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/preGameGuideline"
             app:layout_constraintTop_toBottomOf="@id/preGameToolbar" />
@@ -74,7 +72,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:inputType="textCapWords"
-            android:onClick="@{_ -> viewModel.onStartGamePressed()}"
+            android:text="@={viewModel.awayTeamName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/preGameGuideline"
             app:layout_constraintTop_toBottomOf="@id/preGameHomeTeamInput" />
@@ -85,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginBottom="30dp"
+            android:onClick="@{_ -> viewModel.onStartGamePressed()}"
             android:text="@string/preGameStart"
             android:textColor="@android:color/white"
             app:backgroundTint="@color/colorAccent"
@@ -95,4 +94,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

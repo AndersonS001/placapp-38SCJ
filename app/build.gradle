@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -42,7 +43,7 @@ dependencies {
 
     // Room
     implementation "androidx.room:room-runtime:2.2.6"
-    implementation group: 'androidx.room', name: 'room-compiler', version: '2.2.6'
+    kapt "androidx.room:room-compiler:2.2.6"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
