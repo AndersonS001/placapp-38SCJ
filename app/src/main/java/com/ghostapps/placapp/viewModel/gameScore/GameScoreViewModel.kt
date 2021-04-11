@@ -18,8 +18,8 @@ class GameScoreViewModel(
     var formattedHomeTeamScore = "00"
     var formattedAwayTeamScore = "00"
 
-    var formattedSetHomeTeamScore = "00"
-    var formattedSetAwayTeamScore = "00"
+    var formattedSetHomeTeamScore = "0"
+    var formattedSetAwayTeamScore = "0"
 
     fun onCreate(homeTeamName: String, awayTeamName: String) {
         this.homeTeamName = homeTeamName
@@ -54,11 +54,9 @@ class GameScoreViewModel(
     private fun updateSet() {
         var setPoint = 25
         var isGameOver = false
-        var winner = homeTeamName
 
         if (setHomeTeamScore == 2 && setAwayTeamScore == 2) {
             setPoint = 15
-            isGameOver = true
         }
 
         if (homeTeamScore >= setPoint) {
@@ -80,24 +78,16 @@ class GameScoreViewModel(
                 setAwayTeamScore++
                 formattedSetAwayTeamScore = setAwayTeamScore.toString()
 
-                if (setAwayTeamScore == 3) {
+                if (setAwayTeamScore == 3)
                     isGameOver = true
-                    winner = awayTeamName
-                }
 
                 resetScore()
             }
         }
 
-//        if(isGameOver) {
-//            val text = "Fim de Jogo! O vencedor é: " + winner.text
-//            val duration = Toast.LENGTH_LONG
-//
-//            val toast = Toast.makeText(applicationContext, text, duration)
-//            toast.show()
-//
-//            onExitPressed()
-//        }
+        if (isGameOver)
+            onExitPressed()
+
 
         notifyChange()
     }

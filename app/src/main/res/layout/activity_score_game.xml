@@ -64,7 +64,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/gameScoreGuideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gameScoreHomeTeamName"
+            app:layout_constraintTop_toTopOf="@id/gameScoreSetHomeTeamScore"
             tools:text="00" />
 
         <!-- Away team -->
@@ -105,7 +105,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintStart_toEndOf="@id/gameScoreGuidelineAway"
-            app:layout_constraintTop_toTopOf="@id/gameScoreAwayTeamName"
+            app:layout_constraintTop_toTopOf="@id/gameScoreSetAwayTeamScore"
             tools:text="00" />
 
         <com.google.android.material.button.MaterialButton
