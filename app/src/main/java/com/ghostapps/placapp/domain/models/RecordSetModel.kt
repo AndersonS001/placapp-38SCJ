@@ -7,6 +7,8 @@ class RecordSetModel(
 
     val matchId: Long,
 
+    val gameSetNumber: Int,
+
     val timestamp: Long
 ) {
 }

@@ -9,15 +9,17 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = RecordSetsEntity.TABLE_NAME)
 class RecordSetsEntity(
 
-    val homeTeamPoints: Int,
-
-    val awayTeamPoints: Int,
+    @PrimaryKey
+    @SerializedName("timestamp")
+    val timestamp: Long,
 
     val matchId: Long,
 
-    @PrimaryKey
-    @SerializedName("timestamp")
-    val timestamp: Long
+    val gameSetNumber: Int,
+
+    val homeTeamPoints: Int,
+
+    val awayTeamPoints: Int
 ) {
 
     companion object {
@@ -32,6 +34,7 @@ class RecordSetsEntity(
                     RecordSetsEntity(
                         homeTeamPoints = it.homeTeamPoints,
                         awayTeamPoints = it.awayTeamPoints,
+                        gameSetNumber = it.gameSetNumber,
                         matchId = it.matchId,
                         timestamp = it.timestamp
                     )
@@ -50,7 +53,8 @@ class RecordSetsEntity(
                         homeTeamPoints = it.homeTeamPoints,
                         awayTeamPoints = it.awayTeamPoints,
                         matchId = it.matchId,
-                        timestamp = it.timestamp
+                        timestamp = it.timestamp,
+                        gameSetNumber = it.gameSetNumber
                     )
                 )
             }
@@ -62,6 +66,7 @@ class RecordSetsEntity(
             return RecordSetsEntity(
                 homeTeamPoints = recordSetModel.homeTeamPoints,
                 awayTeamPoints = recordSetModel.awayTeamPoints,
+                gameSetNumber = recordSetModel.gameSetNumber,
                 matchId = recordSetModel.matchId,
                 timestamp = recordSetModel.timestamp
             )

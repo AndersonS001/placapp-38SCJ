@@ -48,7 +48,7 @@ class GameScoreViewModel(
     }
 
     fun onExitPressed() {
-        endGame()
+        contract.onExitPressed()
     }
 
     private fun difference(x: Int, y: Int): Int {
@@ -75,19 +75,19 @@ class GameScoreViewModel(
                     gameSetHistory = null
                 )
             )
-
-            onExitPressed()
         }.start()
+
     }
 
-    private fun endSet() {
+    private fun endSet(gameSetNumber: Int) {
         Thread {
             insertRegister.execute(
                 RecordSetModel(
                     matchId = recordMatch.id,
                     timestamp = Date().time,
                     homeTeamPoints = homeTeamScore,
-                    awayTeamPoints = awayTeamScore
+                    awayTeamPoints = awayTeamScore,
+                    gameSetNumber = gameSetNumber
                 )
             )
 
@@ -112,7 +112,7 @@ class GameScoreViewModel(
                 if (setHomeTeamScore == 3)
                     isGameOver = true
 
-                endSet()
+                endSet(gameSetNumber = setAwayTeamScore + setHomeTeamScore)
             }
         }
 
@@ -125,12 +125,15 @@ class GameScoreViewModel(
                 if (setAwayTeamScore == 3)
                     isGameOver = true
 
-                endSet()
+                endSet(gameSetNumber = setAwayTeamScore + setHomeTeamScore)
             }
         }
 
-        if (isGameOver)
+        if (isGameOver) {
             endGame()
+
+            onExitPressed()
+        }
 
         notifyChange()
     }

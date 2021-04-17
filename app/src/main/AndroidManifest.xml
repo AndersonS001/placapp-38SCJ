@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".ui.preGame.PreGameActivity" />
         <activity android:name=".ui.gameScore.GameScoreActivity" />
+        <activity android:name=".ui.gameRecords.GameRecordsActivity"/>
     </application>
 
 </manifest>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/itemGameRecordHomeTeamName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintEnd_toStartOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemGameRecordHomeTeamScore"
+        tools:text="Teste" />
+
+    <TextView
+        android:id="@+id/itemGameRecordHomeTeamScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toStartOf="@id/itemGameRecordDivisor"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordHomeFirstSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordHomeTeamScore"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordHomeSecondSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/itemGameRecordHomeThirdSet"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordHomeFirstSet"
+        tools:text="03" />
+
+
+    <TextView
+        android:id="@+id/itemGameRecordHomeThirdSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/itemGameRecordHomeFourthSet"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordHomeSecondSet"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordHomeFourthSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/itemGameRecordHomeFifthSet"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordHomeThirdSet"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordHomeFifthSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordHomeFourthSet"
+
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordDivisor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        app:layout_constraintBottom_toBottomOf="@id/itemGameRecordHomeTeamScore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemGameRecordHomeTeamScore" />
+
+    <TextView
+        android:id="@+id/itemGameRecordAwayTeamScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginStart="8dp"
+        android:textSize="40sp"
+        app:layout_constraintStart_toEndOf="@id/itemGameRecordDivisor"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="02" />
+
+    <TextView
+        android:id="@+id/itemGameRecordAwayTeamName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintEnd_toStartOf="@id/itemGameRecordDelete"
+        app:layout_constraintStart_toEndOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintTop_toTopOf="@id/itemGameRecordAwayTeamScore"
+        tools:text="Teste" />
+
+    <TextView
+        android:id="@+id/itemGameRecordAwayFirstSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordAwayTeamScore"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordDivisor1Set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        app:layout_constraintBottom_toBottomOf="@id/itemGameRecordHomeFirstSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemGameRecordHomeFirstSet" />
+
+    <TextView
+        android:id="@+id/itemGameRecordAwaySecondSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/itemGameRecordAwayThirdSet"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordAwayFirstSet"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordDivisor2Set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        app:layout_constraintBottom_toBottomOf="@id/itemGameRecordHomeSecondSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemGameRecordHomeSecondSet" />
+
+
+    <TextView
+        android:id="@+id/itemGameRecordAwayThirdSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/itemGameRecordAwayFourthSet"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordAwaySecondSet"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordDivisor3Set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        app:layout_constraintBottom_toBottomOf="@id/itemGameRecordHomeThirdSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemGameRecordHomeThirdSet" />
+
+    <TextView
+        android:id="@+id/itemGameRecordAwayFourthSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/itemGameRecordAwayFifthSet"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordAwayThirdSet"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordDivisor4Set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/itemGameRecordHomeFourthSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemGameRecordHomeFourthSet"
+        tools:text="x" />
+
+    <TextView
+        android:id="@+id/itemGameRecordAwayFifthSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintStart_toStartOf="@id/itemGameRecordAwayTeamScore"
+        app:layout_constraintTop_toBottomOf="@id/itemGameRecordAwayFourthSet"
+        tools:text="03" />
+
+    <TextView
+        android:id="@+id/itemGameRecordDivisor5Set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/itemGameRecordHomeFifthSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemGameRecordHomeFifthSet"
+        tools:text="X" />
+
+    <ImageView
+        android:id="@+id/itemGameRecordDelete"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:padding="10dp"
+        android:src="@android:drawable/ic_menu_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/itemGameRecordAwayTeamName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
