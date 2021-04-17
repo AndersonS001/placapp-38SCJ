@@ -1,9 +1,14 @@
 package com.ghostapps.placapp.viewModel.gameScore
 
+import com.ghostapps.placapp.domain.models.RecordModel
+import com.ghostapps.placapp.domain.models.RecordSetModel
+import com.ghostapps.placapp.domain.useCases.InsertRegister
 import com.ghostapps.placapp.viewModel.BaseViewModel
+import java.util.*
 
 class GameScoreViewModel(
-    private val contract: GameScoreContract
+    private val contract: GameScoreContract,
+    private val insertRegister: InsertRegister
 ) : BaseViewModel() {
 
     var homeTeamScore = 0
@@ -21,9 +26,15 @@ class GameScoreViewModel(
     var formattedSetHomeTeamScore = "0"
     var formattedSetAwayTeamScore = "0"
 
-    fun onCreate(homeTeamName: String, awayTeamName: String) {
+    lateinit var recordMatch: RecordModel
+
+    fun onCreate(homeTeamName: String, awayTeamName: String, recordModel: RecordModel?) {
         this.homeTeamName = homeTeamName
         this.awayTeamName = awayTeamName
+
+        if (recordModel != null) {
+            this.recordMatch = recordModel
+        }
     }
 
     fun onHomeTeamIncrease() {
@@ -51,6 +62,37 @@ class GameScoreViewModel(
         updateSet()
     }
 
+    private fun endGame() {
+        Thread {
+            insertRegister.execute(
+                RecordModel(
+                    id = recordMatch.id,
+                    homeTeamName = homeTeamName,
+                    awayTeamName = awayTeamName,
+                    homeTeamSetScore = setHomeTeamScore,
+                    awayTeamSetScore = setAwayTeamScore,
+
+                    gameSetHistory = null
+                )
+            )
+        }.start()
+    }
+
+    private fun endSet() {
+        Thread {
+            insertRegister.execute(
+                RecordSetModel(
+                    matchId = recordMatch.id,
+                    timestamp = Date().time,
+                    homeTeamPoints = homeTeamScore,
+                    awayTeamPoints = awayTeamScore
+                )
+            )
+
+            resetScore()
+        }.start()
+    }
+
     private fun updateSet() {
         var setPoint = 25
         var isGameOver = false
@@ -68,7 +110,7 @@ class GameScoreViewModel(
                 if (setHomeTeamScore == 3)
                     isGameOver = true
 
-                resetScore()
+                endSet()
             }
         }
 
@@ -81,13 +123,14 @@ class GameScoreViewModel(
                 if (setAwayTeamScore == 3)
                     isGameOver = true
 
-                resetScore()
+                endSet()
             }
         }
 
-        if (isGameOver)
+        if (isGameOver) {
+            endGame()
             onExitPressed()
-
+        }
 
         notifyChange()
     }

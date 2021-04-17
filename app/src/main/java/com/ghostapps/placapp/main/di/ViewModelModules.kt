@@ -1,5 +1,6 @@
 package com.ghostapps.placapp.main.di
 
+import com.ghostapps.placapp.data.local.useCases.InsertLocalRegister
 import com.ghostapps.placapp.viewModel.gameScore.GameScoreContract
 import com.ghostapps.placapp.viewModel.gameScore.GameScoreViewModel
 import com.ghostapps.placapp.viewModel.home.HomeContract
@@ -16,10 +17,10 @@ object ViewModelModules {
             HomeViewModel(contract)
         }
         viewModel { (contract: PreGameContract) ->
-            PreGameViewModel(contract)
+            PreGameViewModel(contract, get<InsertLocalRegister>())
         }
         viewModel { (contract: GameScoreContract) ->
-            GameScoreViewModel(contract)
+            GameScoreViewModel(contract, get<InsertLocalRegister>())
         }
     }
 }

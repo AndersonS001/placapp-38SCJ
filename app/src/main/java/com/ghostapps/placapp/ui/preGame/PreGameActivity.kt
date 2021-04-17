@@ -40,6 +40,7 @@ class PreGameActivity : AppCompatActivity(), PreGameContract {
         val intent = Intent(this, GameScoreActivity::class.java)
         intent.putExtra(GameScoreActivity.TEAM_HOME_NAME, viewModel.homeTeamName)
         intent.putExtra(GameScoreActivity.TEAM_AWAY_NAME, viewModel.awayTeamName)
+        intent.putExtra(GameScoreActivity.MATCH_ID, viewModel.record)
         startActivity(intent)
         finish()
     }
