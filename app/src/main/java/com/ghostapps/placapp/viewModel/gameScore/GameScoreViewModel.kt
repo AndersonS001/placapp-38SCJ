@@ -75,6 +75,8 @@ class GameScoreViewModel(
                     gameSetHistory = null
                 )
             )
+
+            onExitPressed()
         }.start()
     }
 
@@ -127,10 +129,8 @@ class GameScoreViewModel(
             }
         }
 
-        if (isGameOver) {
+        if (isGameOver)
             endGame()
-            onExitPressed()
-        }
 
         notifyChange()
     }
