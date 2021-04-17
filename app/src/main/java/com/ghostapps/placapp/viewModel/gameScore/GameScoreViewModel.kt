@@ -48,7 +48,7 @@ class GameScoreViewModel(
     }
 
     fun onExitPressed() {
-        contract.onExitPressed()
+        endGame()
     }
 
     private fun difference(x: Int, y: Int): Int {
