@@ -11,26 +11,23 @@ class GameScoreViewModel(
     private val insertRegister: InsertRegister
 ) : BaseViewModel() {
 
-    var homeTeamScore = 0
-    var awayTeamScore = 0
-
-    var homeTeamName = ""
-    var awayTeamName = ""
-
-    var setHomeTeamScore = 0
-    var setAwayTeamScore = 0
-
-    var formattedHomeTeamScore = "00"
-    var formattedAwayTeamScore = "00"
-
-    var formattedSetHomeTeamScore = "0"
-    var formattedSetAwayTeamScore = "0"
+    lateinit var homeTeam: Match
+    lateinit var awayTeam: Match
 
     lateinit var recordMatch: RecordModel
 
     fun onCreate(homeTeamName: String, awayTeamName: String, recordModel: RecordModel?) {
-        this.homeTeamName = homeTeamName
-        this.awayTeamName = awayTeamName
+        homeTeam = Match(teamName= homeTeamName)
+        awayTeam = Match(teamName = awayTeamName)
+
+        if (recordModel != null) {
+            this.recordMatch = recordModel
+        }
+    }
+
+    fun onCreate(homeTeamMatch: Match, awayTeamMatch: Match, recordModel: RecordModel?) {
+        homeTeam = homeTeamMatch
+        awayTeam = awayTeamMatch
 
         if (recordModel != null) {
             this.recordMatch = recordModel
@@ -38,12 +35,12 @@ class GameScoreViewModel(
     }
 
     fun onHomeTeamIncrease() {
-        homeTeamScore++
+        homeTeam.teamScore++
         updateScore()
     }
 
     fun onAwayTeamIncrease() {
-        awayTeamScore++
+        awayTeam.teamScore++
         updateScore()
     }
 
@@ -56,8 +53,8 @@ class GameScoreViewModel(
     }
 
     private fun updateScore() {
-        formattedHomeTeamScore = String.format("%02d", homeTeamScore)
-        formattedAwayTeamScore = String.format("%02d", awayTeamScore)
+        homeTeam.formattedTeamScore = String.format("%02d", homeTeam.teamScore)
+        awayTeam.formattedTeamScore = String.format("%02d", awayTeam.teamScore)
 
         updateSet()
     }
@@ -67,10 +64,10 @@ class GameScoreViewModel(
             insertRegister.execute(
                 RecordModel(
                     id = recordMatch.id,
-                    homeTeamName = homeTeamName,
-                    awayTeamName = awayTeamName,
-                    homeTeamSetScore = setHomeTeamScore,
-                    awayTeamSetScore = setAwayTeamScore,
+                    homeTeamName = homeTeam.teamName,
+                    awayTeamName = awayTeam.teamName,
+                    homeTeamSetScore = homeTeam.gameSetTeamScore,
+                    awayTeamSetScore = awayTeam.gameSetTeamScore,
 
                     gameSetHistory = null
                 )
@@ -85,8 +82,8 @@ class GameScoreViewModel(
                 RecordSetModel(
                     matchId = recordMatch.id,
                     timestamp = Date().time,
-                    homeTeamPoints = homeTeamScore,
-                    awayTeamPoints = awayTeamScore,
+                    homeTeamPoints = homeTeam.teamScore,
+                    awayTeamPoints = awayTeam.teamScore,
                     gameSetNumber = gameSetNumber
                 )
             )
@@ -96,40 +93,17 @@ class GameScoreViewModel(
     }
 
     private fun updateSet() {
-        var setPoint = 25
-        var isGameOver = false
+        var gameSetPoint = 25
 
-        if (setHomeTeamScore == 2 && setAwayTeamScore == 2) {
-            setPoint = 15
+        if (homeTeam.gameSetTeamScore == 2 && awayTeam.gameSetTeamScore == 2) {
+            gameSetPoint = 15
         }
 
-        if (homeTeamScore >= setPoint) {
+        val homeGameOver = gameSetPoint(homeTeam, awayTeam, gameSetPoint)
 
-            if (difference(homeTeamScore, awayTeamScore) >= 2) {
-                setHomeTeamScore++
-                formattedSetHomeTeamScore = setHomeTeamScore.toString()
+        val awayGameOver = gameSetPoint(awayTeam, homeTeam, gameSetPoint)
 
-                if (setHomeTeamScore == 3)
-                    isGameOver = true
-
-                endSet(gameSetNumber = setAwayTeamScore + setHomeTeamScore)
-            }
-        }
-
-        if (awayTeamScore >= setPoint) {
-
-            if (difference(awayTeamScore, homeTeamScore) >= 2) {
-                setAwayTeamScore++
-                formattedSetAwayTeamScore = setAwayTeamScore.toString()
-
-                if (setAwayTeamScore == 3)
-                    isGameOver = true
-
-                endSet(gameSetNumber = setAwayTeamScore + setHomeTeamScore)
-            }
-        }
-
-        if (isGameOver) {
+        if (homeGameOver || awayGameOver) {
             endGame()
 
             onExitPressed()
@@ -138,9 +112,29 @@ class GameScoreViewModel(
         notifyChange()
     }
 
+    private fun gameSetPoint(match: Match, otherTeam: Match, setPoint: Int): Boolean {
+
+        var isGameOver = false
+
+        if (match.teamScore >= setPoint) {
+
+            if (difference(match.teamScore, otherTeam.teamScore) >= 2) {
+                match.gameSetTeamScore++
+                match.formattedSetTeamScore = match.gameSetTeamScore.toString()
+
+                if (match.gameSetTeamScore == 3)
+                    isGameOver = true
+
+                endSet(gameSetNumber = otherTeam.gameSetTeamScore + match.gameSetTeamScore)
+            }
+        }
+
+        return isGameOver
+    }
+
     private fun resetScore() {
-        homeTeamScore = 0
-        awayTeamScore = 0
+        homeTeam.teamScore = 0
+        awayTeam.teamScore = 0
 
         updateScore()
     }
