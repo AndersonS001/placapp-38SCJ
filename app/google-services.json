@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "441531356206",
+    "project_id": "placapp-38scj",
+    "storage_bucket": "placapp-38scj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441531356206:android:fdc30d147254fa7236bbbf",
+        "android_client_info": {
+          "package_name": "com.ghostapps.placapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441531356206-56guge2bd71jh1sfho49leiqkq8na473.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ghostapps.placapp",
+            "certificate_hash": "1b78927ec48e34a60658b8240a0e61b9bfe124d3"
+          }
+        },
+        {
+          "client_id": "441531356206-dape37b0sm97npfgjemp7cg1j1tspo0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWl73L6nkbg9cSC8etceLtjHDiWib-vlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441531356206-dape37b0sm97npfgjemp7cg1j1tspo0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
