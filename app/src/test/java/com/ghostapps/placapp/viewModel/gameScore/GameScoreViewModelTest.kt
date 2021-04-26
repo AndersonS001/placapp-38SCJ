@@ -1,7 +1,6 @@
 package com.ghostapps.placapp.viewModel.gameScore
 
-import com.ghostapps.placapp.domain.models.RecordSetModel
-import com.ghostapps.placapp.domain.useCases.InsertRegister
+import com.ghostapps.placapp.domain.local.useCases.InsertRegister
 import com.nhaarman.mockito_kotlin.*
 import junit.framework.Assert.assertEquals
 import org.junit.Before
@@ -58,7 +57,7 @@ class GameScoreViewModelTest {
         teamA.teamScore = 24
         teamB.teamScore = 23
 
-        sut.onCreate(homeTeamMatch = teamA, awayTeamMatch = teamB, recordModel = null)
+        sut.onCreate(homeTeamMatch = teamA, awayTeamMatch = teamB)
         sut.onHomeTeamIncrease()
     }
 

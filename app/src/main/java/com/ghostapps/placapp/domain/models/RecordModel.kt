@@ -13,7 +13,7 @@ class RecordModel(
     val awayTeamName: String,
     val awayTeamSetScore: Int?,
 
-    val gameSetHistory : @RawValue List<RecordSetModel>? = null,
+    val gameSetHistory: @RawValue List<RecordSetModel>? = null,
 
-    var id: Long
+    val documentId: String = ""
 ): Parcelable

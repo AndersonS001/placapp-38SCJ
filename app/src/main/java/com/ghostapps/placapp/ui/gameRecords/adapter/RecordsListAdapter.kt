@@ -7,7 +7,7 @@ import com.ghostapps.placapp.R
 import com.ghostapps.placapp.domain.models.RecordModel
 
 class RecordsListAdapter(
-    private val list: Array<RecordModel>,
+    private val list: MutableList<RecordModel>,
     private val onDeletePressed: (recordModel: RecordModel) -> Unit
 ): RecyclerView.Adapter<RecordsListViewHolder>() {
 

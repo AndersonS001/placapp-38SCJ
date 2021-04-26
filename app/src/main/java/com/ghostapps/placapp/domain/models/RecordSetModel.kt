@@ -5,10 +5,5 @@ class RecordSetModel(
 
     val awayTeamPoints: Int,
 
-    val matchId: Long,
-
-    val gameSetNumber: Int,
-
-    val timestamp: Long
-) {
-}
+    val gameSetNumber: Int
+)

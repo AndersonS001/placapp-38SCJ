@@ -1,37 +1,32 @@
 package com.ghostapps.placapp.viewModel.gameScore
 
+import com.ghostapps.placapp.data.remote.useCases.InsertRemoteRegister
 import com.ghostapps.placapp.domain.models.RecordModel
 import com.ghostapps.placapp.domain.models.RecordSetModel
-import com.ghostapps.placapp.domain.useCases.InsertRegister
 import com.ghostapps.placapp.viewModel.BaseViewModel
-import java.util.*
 
 class GameScoreViewModel(
     private val contract: GameScoreContract,
-    private val insertRegister: InsertRegister
+    private val insertRegister: InsertRemoteRegister
 ) : BaseViewModel() {
 
     lateinit var homeTeam: Match
     lateinit var awayTeam: Match
 
-    lateinit var recordMatch: RecordModel
+    lateinit var lstSet: MutableList<RecordSetModel>
 
-    fun onCreate(homeTeamName: String, awayTeamName: String, recordModel: RecordModel?) {
-        homeTeam = Match(teamName= homeTeamName)
+    fun onCreate(homeTeamName: String, awayTeamName: String) {
+        homeTeam = Match(teamName = homeTeamName)
         awayTeam = Match(teamName = awayTeamName)
 
-        if (recordModel != null) {
-            this.recordMatch = recordModel
-        }
+        lstSet = mutableListOf()
     }
 
-    fun onCreate(homeTeamMatch: Match, awayTeamMatch: Match, recordModel: RecordModel?) {
+    fun onCreate(homeTeamMatch: Match, awayTeamMatch: Match) {
         homeTeam = homeTeamMatch
         awayTeam = awayTeamMatch
 
-        if (recordModel != null) {
-            this.recordMatch = recordModel
-        }
+        lstSet = mutableListOf()
     }
 
     fun onHomeTeamIncrease() {
@@ -63,13 +58,12 @@ class GameScoreViewModel(
         Thread {
             insertRegister.execute(
                 RecordModel(
-                    id = recordMatch.id,
                     homeTeamName = homeTeam.teamName,
                     awayTeamName = awayTeam.teamName,
                     homeTeamSetScore = homeTeam.gameSetTeamScore,
                     awayTeamSetScore = awayTeam.gameSetTeamScore,
 
-                    gameSetHistory = null
+                    gameSetHistory = lstSet
                 )
             )
         }.start()
@@ -77,19 +71,30 @@ class GameScoreViewModel(
     }
 
     private fun endSet(gameSetNumber: Int) {
-        Thread {
-            insertRegister.execute(
-                RecordSetModel(
-                    matchId = recordMatch.id,
-                    timestamp = Date().time,
-                    homeTeamPoints = homeTeam.teamScore,
-                    awayTeamPoints = awayTeam.teamScore,
-                    gameSetNumber = gameSetNumber
-                )
-            )
 
-            resetScore()
-        }.start()
+        lstSet.add(
+            RecordSetModel(
+                homeTeamPoints = homeTeam.teamScore,
+                awayTeamPoints = awayTeam.teamScore,
+                gameSetNumber = gameSetNumber
+            )
+        )
+
+        resetScore()
+
+//        Thread {
+//            insertRegister.execute(
+//                RecordSetModel(
+//                    matchId = recordMatch.id,
+//                    timestamp = Date().time,
+//                    homeTeamPoints = homeTeam.teamScore,
+//                    awayTeamPoints = awayTeam.teamScore,
+//                    gameSetNumber = gameSetNumber
+//                )
+//            )
+//
+//            resetScore()
+//        }.start()
     }
 
     private fun updateSet() {

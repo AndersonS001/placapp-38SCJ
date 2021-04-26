@@ -1,8 +1,7 @@
 package com.ghostapps.placapp.main.di
 
-import com.ghostapps.placapp.data.local.useCases.DeleteLocalRegister
-import com.ghostapps.placapp.data.local.useCases.GetAllLocalRegister
-import com.ghostapps.placapp.data.local.useCases.InsertLocalRegister
+import com.ghostapps.placapp.data.remote.useCases.DeleteRemoteRegister
+import com.ghostapps.placapp.data.remote.useCases.GetAllRemoteRegister
 import com.ghostapps.placapp.viewModel.gameRecords.GameRecordsViewModel
 import com.ghostapps.placapp.viewModel.gameScore.GameScoreContract
 import com.ghostapps.placapp.viewModel.gameScore.GameScoreViewModel
@@ -20,13 +19,13 @@ object ViewModelModules {
             HomeViewModel(contract)
         }
         viewModel { (contract: PreGameContract) ->
-            PreGameViewModel(contract, get<InsertLocalRegister>())
+            PreGameViewModel(contract)
         }
         viewModel { (contract: GameScoreContract) ->
-            GameScoreViewModel(contract, get<InsertLocalRegister>())
+            GameScoreViewModel(contract, get())
         }
         viewModel {
-            GameRecordsViewModel(get<GetAllLocalRegister>(), get<DeleteLocalRegister>())
+            GameRecordsViewModel(get<GetAllRemoteRegister>(), get<DeleteRemoteRegister>())
         }
     }
 }

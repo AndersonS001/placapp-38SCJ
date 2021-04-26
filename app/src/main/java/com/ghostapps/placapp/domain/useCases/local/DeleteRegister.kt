@@ -1,4 +1,4 @@
-package com.ghostapps.placapp.domain.useCases
+package com.ghostapps.placapp.domain.useCases.local
 
 import com.ghostapps.placapp.domain.models.RecordModel
 

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ghostapps.placapp.R
 import com.ghostapps.placapp.databinding.ActivityScoreGameBinding
-import com.ghostapps.placapp.domain.models.RecordModel
 import com.ghostapps.placapp.viewModel.gameScore.GameScoreContract
 import com.ghostapps.placapp.viewModel.gameScore.GameScoreViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,8 +28,7 @@ class GameScoreActivity : AppCompatActivity(), GameScoreContract {
 
         viewModel.onCreate(
             intent.getStringExtra(TEAM_HOME_NAME) ?: "",
-            intent.getStringExtra(TEAM_AWAY_NAME) ?: "",
-            recordModel = intent.getParcelableExtra(MATCH_ID)
+            intent.getStringExtra(TEAM_AWAY_NAME) ?: ""
         )
     }
 

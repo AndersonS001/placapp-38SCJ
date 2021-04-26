@@ -12,12 +12,17 @@ import com.ghostapps.placapp.databinding.ActivityGameRecordsBinding
 import com.ghostapps.placapp.ui.gameRecords.adapter.RecordsListAdapter
 import com.ghostapps.placapp.viewModel.gameRecords.GameRecordsViewModel
 import kotlinx.android.synthetic.main.activity_game_records.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.newSingleThreadContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class GameRecordsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameRecordsBinding
     private val viewModel: GameRecordsViewModel by viewModel { parametersOf(this) }
+    private val scope = CoroutineScope(newSingleThreadContext("name"))
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +33,8 @@ class GameRecordsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewModel.recordsList.observe(this, Observer { recordsList ->
-            val adapter = RecordsListAdapter(recordsList, onDeletePressed = { gameRecord ->
+        viewModel.recordsList.observe(this, Observer { recordList ->
+            val adapter = RecordsListAdapter(recordList, onDeletePressed = { gameRecord ->
                 var dialog: AlertDialog? = null
                 dialog = AlertDialog.Builder(this)
                     .setTitle("Remover Registro")
@@ -38,7 +43,7 @@ class GameRecordsActivity : AppCompatActivity() {
                         viewModel.deleteRegister(gameRecord)
                         dialog?.cancel()
                     }
-                    .setNegativeButton("Deixa quieto") {_, _ ->
+                    .setNegativeButton("Deixa quieto") { _, _ ->
                         dialog?.cancel()
                     }.create()
                 dialog.show()
@@ -47,7 +52,11 @@ class GameRecordsActivity : AppCompatActivity() {
             gameRecordsList.adapter = adapter
         })
 
-        viewModel.loadRecords()
+        loadRecords()
+    }
+
+    private fun loadRecords() {
+        scope.launch { viewModel.loadRecords() }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -58,3 +67,4 @@ class GameRecordsActivity : AppCompatActivity() {
     }
 
 }
+
