@@ -28,10 +28,10 @@ class GameRecordsViewModel(
 
 //        recordsList.value = recordsList.value
 
-    fun deleteRegister(recordModel: RecordModel) {
+    suspend fun deleteRegister(recordModel: RecordModel) {
 //        Thread {
-//            deleteRegister.execute(recordModel)
-//            loadRecords()
+            deleteRegister.execute(recordModel)
+            loadRecords()
 //        }.start()
     }
 
